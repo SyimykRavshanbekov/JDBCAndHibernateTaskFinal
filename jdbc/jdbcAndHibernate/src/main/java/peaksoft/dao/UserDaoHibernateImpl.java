@@ -22,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.createSQLQuery(
-                    "create table if not exists ussers(" +
+                    "create table if not exists users(" +
                             "id serial primary key," +
                             "name varchar(50)  ," +
                             "last_name varchar(50) ," +
@@ -42,7 +42,7 @@ public class UserDaoHibernateImpl implements UserDao {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.createNativeQuery(
-                    "drop table if exists ussers;").executeUpdate();
+                    "drop table if exists users;").executeUpdate();
             session.getTransaction().commit();
             session.close();
         } catch (HibernateException e) {
@@ -93,7 +93,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.close();
             return users;
         } catch (HibernateException e) {
-            System.out.println("fuck Syimyk");
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -104,7 +104,7 @@ public class UserDaoHibernateImpl implements UserDao {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
 
-            session.createSQLQuery("truncate table ussers;").executeUpdate();
+            session.createSQLQuery("truncate table users;").executeUpdate();
 
             session.getTransaction().commit();
             session.close();
